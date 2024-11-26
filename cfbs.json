@@ -5,18 +5,6 @@
   "git": true,
   "build": [
     {
-      "name": "library-for-promise-types-in-python",
-      "description": "Library enabling promise types implemented in python.",
-      "tags": ["supported", "library"],
-      "repo": "https://github.com/cfengine/modules",
-      "by": "https://github.com/cfengine",
-      "version": "0.2.3",
-      "commit": "2be0eee0788e2e562e43f0254c702f85b368c051",
-      "subdirectory": "libraries/python",
-      "added_by": "promise-type-groups",
-      "steps": ["copy cfengine.py modules/promises/"]
-    },
-    {
       "name": "promise-type-groups",
       "description": "Experimental promise type to manage local user groups.",
       "tags": ["supported", "promise-type", "experimental"],
