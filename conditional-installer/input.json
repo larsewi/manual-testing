@@ -13,8 +13,8 @@
     "namespace": "conditional_installer",
     "response": [
       {
-        "condition": "debian",
-        "packages": "epel-release",
+        "condition": "ubuntu",
+        "packages": "valgrind",
         "why": "More software is more better"
       }
     ],
