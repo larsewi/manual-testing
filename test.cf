@@ -1,8 +1,8 @@
 bundle agent bogus
 {
   reports:
-    foo::
+    data:foo::
       "I am foo";
-    bar::
+    data:bar::
       "I am bar";
 }
