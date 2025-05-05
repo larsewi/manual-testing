@@ -17,17 +17,6 @@
         "run EXPLICIT_VERSION=3.24.1 EXPLICIT_RELEASE=1 ./prepare.sh -y",
         "copy ./ ./"
       ]
-    },
-    {
-      "name": "./test.cf",
-      "description": "Local policy file added using cfbs command line",
-      "tags": ["local"],
-      "added_by": "cfbs add",
-      "steps": [
-        "copy ./test.cf services/cfbs/test.cf",
-        "policy_files services/cfbs/test.cf",
-        "bundles bogus"
-      ]
     }
   ]
 }
