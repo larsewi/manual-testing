@@ -157,13 +157,14 @@
       "tags": ["promise-type", "experimental"],
       "repo": "https://github.com/cfengine/modules",
       "by": "https://github.com/larsewi",
-      "version": "0.2.4",
-      "commit": "813fb3d172c8db5642ef69cd5e8ef32b264ef275",
+      "version": "0.2.5",
+      "commit": "258304b1783287d06d13e6851951c95f9b7facb2",
       "subdirectory": "promise-types/groups",
       "dependencies": ["library-for-promise-types-in-python"],
       "added_by": "cfbs add",
       "steps": [
         "copy groups.py modules/promises/",
+        "replace_version 1 0.0.0 modules/promises/groups.py",
         "append enable.cf services/init.cf"
       ]
     }
