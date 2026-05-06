@@ -11,6 +11,17 @@
       "commit": "8be447f34b471245ff4ff9a9bb91a7a95d92f1a1",
       "added_by": "cfbs add",
       "steps": ["run ./prepare.sh -y", "copy ./ ./"]
+    },
+    {
+      "name": "./test.cf",
+      "description": "Local policy file added using cfbs command line",
+      "tags": ["local"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy ./test.cf services/cfbs/test.cf",
+        "policy_files services/cfbs/test.cf",
+        "bundles bogus"
+      ]
     }
   ]
 }
