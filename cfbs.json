@@ -33,6 +33,91 @@
         "bundles install_ansible",
         "policy_files services/cfbs/modules/software/install-ansible/install-ansible.cf"
       ]
+    },
+    {
+      "name": "promise-type-ansible",
+      "description": "Promise type to run ansible playbooks.",
+      "tags": ["supported", "promise-type"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/tranchitella",
+      "version": "1.0.2",
+      "commit": "59e791372671e9f7b2ca48b8c63e6d7dae1bd3cb",
+      "subdirectory": "promise-types/ansible",
+      "dependencies": ["library-for-promise-types-in-python"],
+      "added_by": "ansible-playbook-dispatcher",
+      "steps": [
+        "copy ansible_promise.py modules/promises/",
+        "copy ansible_promise.sh modules/promises/",
+        "append enable.cf services/init.cf"
+      ]
+    },
+    {
+      "name": "library-for-promise-types-in-python",
+      "description": "Library enabling promise types implemented in python.",
+      "tags": ["supported", "library"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/cfengine",
+      "version": "0.3.1",
+      "commit": "679c6c0b18cdb517c7595b1701c3707f47106da5",
+      "subdirectory": "libraries/python",
+      "added_by": "promise-type-ansible",
+      "steps": [
+        "copy cfengine_module_library.py modules/promises/cfengine_module_library.py",
+        "replace_version 2 0.0.0 modules/promises/cfengine_module_library.py",
+        "copy cfengine_module_library.py modules/promises/cfengine.py",
+        "replace_version 2 0.0.0 modules/promises/cfengine.py"
+      ]
+    },
+    {
+      "name": "ansible-playbook-dispatcher",
+      "description": "Ansible playbook dispatcher for running playbooks on schedule",
+      "tags": ["management", "experimental", "ansible"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/larsewi",
+      "version": "0.1.0",
+      "commit": "524c1a24dbd39bf89695a0396682163f9161c9c9",
+      "subdirectory": "management/ansible-playbook-dispatcher",
+      "dependencies": ["promise-type-ansible"],
+      "added_by": "cfbs add",
+      "steps": [
+        "copy main.cf services/cfbs/modules/ansible-playbook-dispatcher/main.cf",
+        "policy_files services/cfbs/modules/ansible-playbook-dispatcher/main.cf",
+        "bundles ansible_playbook_dispatcher:main",
+        "input ./input.json def.json"
+      ],
+      "input": [
+        {
+          "type": "list",
+          "variable": "playbooks",
+          "namespace": "ansible_playbook_dispatcher",
+          "bundle": "main",
+          "label": "Playbooks",
+          "subtype": [
+            {
+              "key": "path",
+              "type": "file",
+              "label": "Playbook",
+              "question": "Which playbook should be run?",
+              "filetype": [".yaml", ".yml"]
+            },
+            {
+              "key": "condition",
+              "type": "string",
+              "label": "Condition",
+              "question": "Condition for when to run",
+              "default": "any"
+            },
+            {
+              "key": "ifelapsed",
+              "type": "string",
+              "label": "ifelapsed",
+              "question": "Number of minutes between playbook assessments",
+              "default": "5"
+            }
+          ],
+          "while": "Do you want to specify more playbooks to be run?"
+        }
+      ]
     }
   ]
 }
