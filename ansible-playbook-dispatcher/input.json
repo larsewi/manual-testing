@@ -1,0 +1,40 @@
+[
+  {
+    "bundle": "main",
+    "label": "Playbooks",
+    "namespace": "ansible_playbook_dispatcher",
+    "response": [
+      {
+        "condition": "any",
+        "ifelapsed": "5",
+        "path": "./ansible-playbook-dispatcher/playbook.yaml"
+      }
+    ],
+    "subtype": [
+      {
+        "filetype": [".yaml", ".yml"],
+        "key": "path",
+        "label": "Playbook",
+        "question": "Which playbook should be run?",
+        "type": "file"
+      },
+      {
+        "default": "any",
+        "key": "condition",
+        "label": "Condition",
+        "question": "Condition for when to run",
+        "type": "string"
+      },
+      {
+        "default": "5",
+        "key": "ifelapsed",
+        "label": "ifelapsed",
+        "question": "Number of minutes between playbook assessments",
+        "type": "string"
+      }
+    ],
+    "type": "list",
+    "variable": "playbooks",
+    "while": "Do you want to specify more playbooks to be run?"
+  }
+]
