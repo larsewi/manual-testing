@@ -1,5 +1,0 @@
-bundle agent bogus
-{
-  reports:
-    "Hello World!";
-}

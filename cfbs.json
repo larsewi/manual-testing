@@ -2,59 +2,20 @@
   "name": "Example project",
   "description": "Example description",
   "type": "policy-set",
-  "git": true,
+  "git": false,
   "build": [
     {
       "name": "masterfiles",
-      "description": "Official CFEngine Masterfiles Policy Framework (MPF)",
-      "url": "https://github.com/cfengine/masterfiles.git",
-      "commit": "8be447f34b471245ff4ff9a9bb91a7a95d92f1a1",
-      "added_by": "cfbs add",
-      "steps": ["run ./prepare.sh -y", "copy ./ ./"]
-    },
-    {
-      "name": "./test.cf",
-      "description": "Local policy file added using cfbs command line",
-      "tags": ["local"],
-      "added_by": "cfbs add",
-      "steps": [
-        "copy ./test.cf services/cfbs/test.cf",
-        "policy_files services/cfbs/test.cf",
-        "bundles bogus"
-      ]
-    },
-    {
-      "name": "library-for-promise-types-in-python",
-      "description": "Library enabling promise types implemented in python.",
-      "tags": ["supported", "library"],
-      "repo": "https://github.com/cfengine/modules",
+      "description": "Official CFEngine Masterfiles Policy Framework (MPF).",
+      "tags": ["supported", "base"],
+      "repo": "https://github.com/cfengine/masterfiles",
       "by": "https://github.com/cfengine",
-      "version": "0.3.1",
-      "commit": "679c6c0b18cdb517c7595b1701c3707f47106da5",
-      "subdirectory": "libraries/python",
-      "added_by": "promise-type-groups",
+      "version": "3.27.2",
+      "commit": "5cb53724ec8b822d1cbec2e116dcdd82f3a0cd28",
+      "added_by": "cfbs init",
       "steps": [
-        "copy cfengine_module_library.py modules/promises/cfengine_module_library.py",
-        "replace_version 2 0.0.0 modules/promises/cfengine_module_library.py",
-        "copy cfengine_module_library.py modules/promises/cfengine.py",
-        "replace_version 2 0.0.0 modules/promises/cfengine.py"
-      ]
-    },
-    {
-      "name": "promise-type-groups",
-      "description": "Experimental promise type to manage local user groups.",
-      "tags": ["promise-type", "experimental"],
-      "repo": "https://github.com/cfengine/modules",
-      "by": "https://github.com/larsewi",
-      "version": "0.2.5",
-      "commit": "258304b1783287d06d13e6851951c95f9b7facb2",
-      "subdirectory": "promise-types/groups",
-      "dependencies": ["library-for-promise-types-in-python"],
-      "added_by": "cfbs add",
-      "steps": [
-        "copy groups.py modules/promises/",
-        "replace_version 1 0.0.0 modules/promises/groups.py",
-        "append enable.cf services/init.cf"
+        "run EXPLICIT_VERSION=3.27.2 EXPLICIT_RELEASE=1 ./prepare.sh -y",
+        "copy ./ ./"
       ]
     }
   ]
