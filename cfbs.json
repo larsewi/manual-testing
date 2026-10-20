@@ -17,6 +17,22 @@
         "run EXPLICIT_VERSION=3.27.2 EXPLICIT_RELEASE=1 ./prepare.sh -y",
         "copy ./ ./"
       ]
+    },
+    {
+      "name": "install-ansible",
+      "description": "Ensure that Ansible software is installed.",
+      "tags": ["experimental", "supported", "software", "ansible"],
+      "repo": "https://github.com/cfengine/modules",
+      "by": "https://github.com/craigcomstock",
+      "version": "0.0.4",
+      "commit": "83851939fca8748c373966fb2b90d367792b50e3",
+      "subdirectory": "software/install-ansible",
+      "added_by": "cfbs add",
+      "steps": [
+        "copy install-ansible.cf services/cfbs/modules/software/install-ansible/install-ansible.cf",
+        "bundles install_ansible",
+        "policy_files services/cfbs/modules/software/install-ansible/install-ansible.cf"
+      ]
     }
   ]
 }
